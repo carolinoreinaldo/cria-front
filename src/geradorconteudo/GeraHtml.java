@@ -1,6 +1,6 @@
 package geradorconteudo;
 
-import criador.dto.OpcoesDto;
+import dto.OpcoesDto;
 
 public class GeraHtml {
 

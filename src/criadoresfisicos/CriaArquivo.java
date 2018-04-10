@@ -1,4 +1,4 @@
-package write;
+package criadoresfisicos;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,10 +10,16 @@ public class CriaArquivo {
 	final private static String DIRETORIO_ATUAL = new File("").getAbsolutePath();
 	final private static String BAR = String.valueOf(File.separatorChar);
 	
-	public void criaDiretorioBase(String nomeProjeto) {
-		final File diretorio = new File(DIRETORIO_ATUAL + "/" + nomeProjeto);
-		if(!diretorio.exists()) {
-			diretorio.mkdir();
+	public void criarPastas(String nomeProjeto) {
+		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto);
+		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto + BAR + "js");
+		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto + BAR + "css");
+	}
+	
+	public void criarPasta(String caminhoPasta){
+		final File pasta = new File(caminhoPasta);
+		if(!pasta.exists()) {
+			pasta.mkdir();
 		}
 	}
 	

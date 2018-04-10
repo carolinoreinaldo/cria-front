@@ -1,9 +1,10 @@
-package criador.dto;
+package dto;
 
 public class OpcoesDto {
 	
 	private String nomeProjeto;
 	private boolean jQuery;
+	private boolean cancelar;
 	
 	public String getNomeProjeto() {
 		return nomeProjeto;
@@ -16,5 +17,11 @@ public class OpcoesDto {
 	}
 	public void setjQuery(boolean jQuery) {
 		this.jQuery = jQuery;
+	}
+	public boolean isCancelar() {
+		return cancelar;
+	}
+	public void setCancelar(boolean cancelar) {
+		this.cancelar = cancelar;
 	}
 }

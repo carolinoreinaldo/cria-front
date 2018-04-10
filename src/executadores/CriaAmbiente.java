@@ -1,4 +1,4 @@
-package write;
+package executadores;
 
 import geradorconteudo.GeraCss;
 import geradorconteudo.GeraHtml;
@@ -7,7 +7,8 @@ import geradorconteudo.GeraJS;
 import java.io.IOException;
 
 import view.RecuperarOpcoes;
-import criador.dto.OpcoesDto;
+import criadoresfisicos.CriaArquivo;
+import dto.OpcoesDto;
 
 public class CriaAmbiente {
 
@@ -19,7 +20,7 @@ public class CriaAmbiente {
 		final String conteudoCss = new GeraCss(opcoes).gerar();
 		
 		CriaArquivo criadorArquivo = new CriaArquivo();
-		criadorArquivo.criaDiretorioBase(opcoes.getNomeProjeto());
+		criadorArquivo.criarPastas(opcoes.getNomeProjeto());
 		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoHtml, "html");
 		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoJS, "js");
 		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoCss, "css");
