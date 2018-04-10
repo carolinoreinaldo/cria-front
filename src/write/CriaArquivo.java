@@ -7,7 +7,8 @@ import java.io.PrintWriter;
 
 public class CriaArquivo {
 
-	final private static String DIRETORIO_ATUAL = new File(".").getAbsolutePath();
+	final private static String DIRETORIO_ATUAL = new File("").getAbsolutePath();
+	final private static String BAR = String.valueOf(File.separatorChar);
 	
 	public void criaDiretorioBase(String nomeProjeto) {
 		final File diretorio = new File(DIRETORIO_ATUAL + "/" + nomeProjeto);
@@ -17,11 +18,11 @@ public class CriaArquivo {
 	}
 	
 	public void criaArquivoFisico(final String nomeAquivo, final String conteudoArquivo, final String extensao) throws IOException {
-		final String path = DIRETORIO_ATUAL + "/" + nomeAquivo + "/" + nomeAquivo + "." + extensao;
-		escreverPorPrimeiro(conteudoArquivo, path);
+		String path = DIRETORIO_ATUAL + BAR + nomeAquivo + BAR + nomeAquivo + "." + extensao;
+		gravarEmArquivo(conteudoArquivo, path);
 	}
 	
-	public void escreverPorPrimeiro(String conteudo,String url) {
+	public void gravarEmArquivo(String conteudo,String url) {
         try {
             File file = new File(url);
             if (!file.exists())
