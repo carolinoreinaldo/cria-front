@@ -20,20 +20,23 @@ public class RecuperarOpcoes {
 	}
 	
 	public OpcoesDto recuperar() {
-		boolean continuaPerguntando = true;
+		boolean continuaPerguntando = false;
 		OpcoesDto opcoes = null;
 		
-		while(continuaPerguntando){
+		do {
 			opcoes = perguntaParaoUsuario(opcoes);
 			
 			if(opcoes.isCancelar()){
 				System.exit(1);
 			}
 			
-			if(opcoes.getNomeProjeto() == null || opcoes.getNomeProjeto() .trim().isEmpty()){
+			final boolean nomeProjetoInvalido = opcoes.getNomeProjeto() == null 
+					|| opcoes.getNomeProjeto().trim().isEmpty();
+			
+			if(nomeProjetoInvalido){
 				continuaPerguntando = true;
 			}
-		}
+		} while(continuaPerguntando);
 		return opcoes;
 	}
 	

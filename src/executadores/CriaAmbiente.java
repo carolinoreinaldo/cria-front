@@ -1,14 +1,16 @@
 package executadores;
 
+import java.io.IOException;
+
+import criadoresfisicos.CriaCss;
+import criadoresfisicos.CriaHtml;
+import criadoresfisicos.CriaJS;
+import criadoresfisicos.CriaPasta;
+import dto.OpcoesDto;
 import geradorconteudo.GeraCss;
 import geradorconteudo.GeraHtml;
 import geradorconteudo.GeraJS;
-
-import java.io.IOException;
-
 import view.RecuperarOpcoes;
-import criadoresfisicos.CriaArquivo;
-import dto.OpcoesDto;
 
 public class CriaAmbiente {
 
@@ -19,10 +21,11 @@ public class CriaAmbiente {
 		final String conteudoJS = new GeraJS(opcoes).gerar();
 		final String conteudoCss = new GeraCss(opcoes).gerar();
 		
-		CriaArquivo criadorArquivo = new CriaArquivo();
-		criadorArquivo.criarPastas(opcoes.getNomeProjeto());
-		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoHtml, "html");
-		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoJS, "js");
-		criadorArquivo.criaArquivoFisico(opcoes.getNomeProjeto(), conteudoCss, "css");
+		CriaPasta criadorPasta = new CriaPasta();
+		criadorPasta.criarPastas(opcoes.getNomeProjeto());
+		
+		new CriaHtml().gravarEmArquivo(conteudoHtml, opcoes);
+		new CriaJS().gravarEmArquivo(conteudoJS, opcoes);
+		new CriaCss().gravarEmArquivo(conteudoCss, opcoes);
 	}
 }

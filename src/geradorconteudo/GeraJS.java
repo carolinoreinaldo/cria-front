@@ -4,14 +4,14 @@ import dto.OpcoesDto;
 
 public class GeraJS {
 
-	private OpcoesDto opcoesDto;
+	private OpcoesDto opcoes;
 	
-	public GeraJS(OpcoesDto opcoesDto){
-		this.opcoesDto = opcoesDto;
+	public GeraJS(OpcoesDto opcoes){
+		this.opcoes = opcoes;
 	}
 	
 	public String gerar(){
-		if(opcoesDto.isjQuery()){
+		if(opcoes.isjQuery()){
 			return gerarComJQuery();
 		} else {
 			return gerarJSPuro();
