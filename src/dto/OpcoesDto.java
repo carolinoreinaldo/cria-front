@@ -4,7 +4,8 @@ public class OpcoesDto {
 	
 	private String nomeProjeto;
 	private boolean jQuery;
-	private boolean cancelar;
+	private boolean bootstrap;
+	private boolean lodash;
 	
 	public String getNomeProjeto() {
 		return nomeProjeto;
@@ -18,10 +19,16 @@ public class OpcoesDto {
 	public void setjQuery(boolean jQuery) {
 		this.jQuery = jQuery;
 	}
-	public boolean isCancelar() {
-		return cancelar;
+	public boolean isBootstrap() {
+		return bootstrap;
 	}
-	public void setCancelar(boolean cancelar) {
-		this.cancelar = cancelar;
+	public void setBootstrap(boolean bootstrap) {
+		this.bootstrap = bootstrap;
+	}
+	public boolean isLodash() {
+		return lodash;
+	}
+	public void setLodash(boolean lodash) {
+		this.lodash = lodash;
 	}
 }

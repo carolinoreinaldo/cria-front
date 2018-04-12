@@ -19,7 +19,11 @@ public class GeraJS {
 	}
 	
 	private String gerarComJQuery(){
-		return "";
+		final StringBuilder js = new StringBuilder();
+		js.append("\n$(document).ready(function() {");
+		js.append("\n	alert('jquery configurado e funcionaldo')");
+		js.append("\n});");
+		return js.toString();
 	}
 	
 	private String gerarJSPuro() {

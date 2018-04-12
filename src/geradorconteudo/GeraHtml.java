@@ -1,6 +1,7 @@
 package geradorconteudo;
 
 import dto.OpcoesDto;
+import enums.Biblioteca;
 
 public class GeraHtml {
 
@@ -16,6 +17,9 @@ public class GeraHtml {
 		html.append("\n<html>");
 		html.append("\n  <head>");
 		html.append("\n    <meta charset=\"utf-8\">");
+		if(opcoesDto.isjQuery()) {
+			html.append("\n    <script type=\"text/javascript\" src=\"js/" + Biblioteca.JQUERY + "\"></script>");
+		}
 		html.append("\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/" + opcoesDto.getNomeProjeto() + ".css\">");
 		html.append("\n    <title>" + opcoesDto.getNomeProjeto() + "</title>");
 		html.append("\n  </head>");
