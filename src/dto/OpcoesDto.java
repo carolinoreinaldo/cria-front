@@ -6,6 +6,7 @@ public class OpcoesDto {
 	private boolean jQuery;
 	private boolean bootstrap;
 	private boolean lodash;
+	private boolean projetoProntoSelecionado;
 	
 	public String getNomeProjeto() {
 		return nomeProjeto;
@@ -30,5 +31,11 @@ public class OpcoesDto {
 	}
 	public void setLodash(boolean lodash) {
 		this.lodash = lodash;
+	}
+	public boolean isProjetoProntoSelecionado() {
+		return projetoProntoSelecionado;
+	}
+	public void setProjetoProntoSelecionado(boolean projetoProntoSelecionado) {
+		this.projetoProntoSelecionado = projetoProntoSelecionado;
 	}
 }

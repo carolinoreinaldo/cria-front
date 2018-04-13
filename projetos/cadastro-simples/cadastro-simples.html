@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/cadastro-simples.css">
+    <title>teste</title>
+  </head>
+  <body>
+    <div id="principal">
+      <div class="div-table">
+        <table id="tbl-cadastro">
+          <tr>
+            <td>id</td>
+            <td>nome</td>
+            <td>idade</td>
+            <td>Remover</td>
+          </tr>
+          <tr>
+            <td class="td-id">1</td>
+            <td>Pessoa 1</td>
+            <td>30</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr>
+            <td class="td-id">2</td>
+            <td>Pessoa 2</td>
+            <td>25</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+        </table>
+      </div>
+      <div class="div-formulario">
+        <form action="#">
+          <label for="Nome:" for="input-nome"></label>
+          <input type="text" id="input-nome" class="input-info" name="input-nome">
+          <label for="Nome:" for="input-idade"></label>
+          <input type="text" id="input-idade" class="input-info" name="input-idade">
+          <input type="button" value="Adicionar" id="btn-add">
+        </form>
+      </div>
+    </div>
+  </body>
+    <script type="text/javascript" src="js/cadastro-simples.js"></script>
+</html>

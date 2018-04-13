@@ -16,6 +16,7 @@ public class Copia {
         FileChannel destinationChannel = null;
         try {
             sourceChannel = new FileInputStream(source).getChannel();
+
             destinationChannel = new FileOutputStream(destination).getChannel();
             sourceChannel.transferTo(0, sourceChannel.size(),
                     destinationChannel);

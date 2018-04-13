@@ -6,7 +6,7 @@ import java.io.IOException;
 import dto.OpcoesDto;
 import static enums.Biblioteca.JQUERY;
 
-public class CopiaArquivos {
+public class CopiaBibliotecas {
 
 	private static final String BAR = String.valueOf(File.separatorChar);
 	private static final String BIBLIOTECAS = BAR + "bibliotecas" + BAR;
@@ -16,7 +16,7 @@ public class CopiaArquivos {
 	private String caminhoOrigem = null;
 	private String caminhoDestino = null;
 	
-	public CopiaArquivos(OpcoesDto opcoes) {
+	public CopiaBibliotecas(OpcoesDto opcoes) {
 		this.opcoes = opcoes;
 		this.copia = new Copia();
 		this.caminhoOrigem = new File("").getAbsolutePath() + BAR; 
