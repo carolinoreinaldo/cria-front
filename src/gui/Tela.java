@@ -80,9 +80,10 @@ public class Tela extends JFrame{
 		JCheckBox jQuery = new JCheckBox("jQuery: ");
 		jQuery.setName("jQuery");
 		JCheckBox lodash = new JCheckBox("lodash: ");
-		jQuery.setName("lodash");
+		lodash.setName("lodash");
 		JCheckBox bootstrap = new JCheckBox("bootstrap: ");
-		jQuery.setName("bootstrap");
+		bootstrap.setName("bootstrap");
+		bootstrap.setEnabled(false);
 		
 		panel.add(jQuery);
 		panel.add(lodash);

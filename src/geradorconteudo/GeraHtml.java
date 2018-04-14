@@ -20,6 +20,9 @@ public class GeraHtml {
 		if(opcoesDto.isjQuery()) {
 			html.append("\n    <script type=\"text/javascript\" src=\"js/" + Biblioteca.JQUERY + "\"></script>");
 		}
+		if(opcoesDto.isjQuery()) {
+			html.append("\n    <script type=\"text/javascript\" src=\"js/" + Biblioteca.LODASH + "\"></script>");
+		}
 		html.append("\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/" + opcoesDto.getNomeProjeto() + ".css\">");
 		html.append("\n    <title>" + opcoesDto.getNomeProjeto() + "</title>");
 		html.append("\n  </head>");
