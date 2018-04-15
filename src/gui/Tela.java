@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,7 +14,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -35,7 +32,7 @@ public class Tela extends JFrame{
 	private static final int PANEL_PROJETOS = 3;
 	
 	private boolean projetoSelecionado = false;
-
+	
 	public void criaTela(){
 		setTitle("Construção do Ambiente Front-End");
 		setSize(400, 300);
@@ -104,7 +101,7 @@ public class Tela extends JFrame{
 	
 	private JPanel criaJPanelProjetos(){
 		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Projetos"));
+		panel.setBorder(BorderFactory.createTitledBorder("Projetos Prontos"));
 		panel.setName("PanelProjetos");
 		
 		Projetos[] projetos = Projetos.values();
@@ -164,14 +161,14 @@ public class Tela extends JFrame{
 		           if(projetoSelecionado){
 		        	   opcoes.setNomeProjeto(recuperarProjetoSelecionado(panelProjetos));
 		        	   opcoes.setProjetoProntoSelecionado(true);
-		        	   new MontaAmbiente().montar(opcoes);
+		        	   new MontaAmbiente(opcoes).montar();
 		           } else {
 			           opcoes.setjQuery(checkBoxSelecionado(panelBibliotecas.getComponent(0)));
 			           opcoes.setLodash(checkBoxSelecionado(panelBibliotecas.getComponent(1)));
 			           opcoes.setBootstrap(checkBoxSelecionado(panelBibliotecas.getComponent(2)));
 			           opcoes.setNomeProjeto(recuperarInputTexto(panelNomeProjeto.getComponent(1)));
 		           
-		        	   boolean ambienteMontado = new MontaAmbiente().montar(opcoes);
+		        	   boolean ambienteMontado = new MontaAmbiente(opcoes).montar();
 		        	   if(ambienteMontado) {
 		        		   message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
 		        		   message.setText("Ambiente montado com sucesso.");
@@ -182,12 +179,7 @@ public class Tela extends JFrame{
 		        	   }
 		           }
 			   } catch (Exception e) {
-				   StringWriter sw = new StringWriter();
-				   PrintWriter pw = new PrintWriter(sw);
-				   e.printStackTrace(pw);
-				   String sStackTrace = sw.toString();
-				   JOptionPane.showMessageDialog(null, sStackTrace);
-				   e.printStackTrace();
+				   new TelaErro(e).criaTela();
 			   }
 		     }
 		});
