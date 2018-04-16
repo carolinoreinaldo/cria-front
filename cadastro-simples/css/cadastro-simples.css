@@ -7,19 +7,11 @@
 #principal{
 	width: 500px;
 	height: 500px;
+	border: 1px solid black;
 	margin: auto;
 	text-align: center;
 }
 
 .input-error {
 	border: 1px solid red;
-}
-
-.fadeOut {
-	opacity: 0;
-	transition: 0.5s;
-}
-
-.invisivel {
-	display: none;
 }

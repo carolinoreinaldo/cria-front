@@ -2,32 +2,39 @@ package criadoresfisicos;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import dto.OpcoesDto;
-import static enums.Biblioteca.JQUERY;
+import enums.Biblioteca;
 
 public class CopiaBibliotecas {
 
 	private static final String BAR = String.valueOf(File.separatorChar);
-	private static final String BIBLIOTECAS = BAR + "bibliotecas" + BAR;
 	
 	private OpcoesDto opcoes = null;
-	private Copia copia = null;
-	private String caminhoOrigem = null;
-	private String caminhoDestino = null;
+	private String pastaJs = null;
 	
 	public CopiaBibliotecas(OpcoesDto opcoes) {
 		this.opcoes = opcoes;
-		this.copia = new Copia();
-		this.caminhoOrigem = new File("").getAbsolutePath() + BAR; 
-		this.caminhoDestino = new File("").getAbsolutePath() + BAR + opcoes.getNomeProjeto() + BAR;
+		this.pastaJs = new File("").getAbsolutePath() + BAR + opcoes.getNomeProjeto() + BAR + "js" + BAR;
 	}
 	
-	public void copiarArquivos() throws IOException {
+	public void copiar() throws IOException {
 		if(opcoes.isjQuery()) {
-			caminhoOrigem = caminhoOrigem + BIBLIOTECAS + JQUERY;
-			caminhoDestino = caminhoDestino + "js" + BAR + "jquery-3.3.1.min.js";
-			copia.copyFile(new File(caminhoOrigem), new File(caminhoDestino));
+			InputStream jquery = getClass().getClassLoader().getResourceAsStream(Biblioteca.JQUERY.toString());
+			copiar(jquery, pastaJs + Biblioteca.JQUERY.toString());
 		}
+		
+		if(opcoes.isLodash()) {
+			InputStream lodash = getClass().getClassLoader().getResourceAsStream(Biblioteca.LODASH.toString());
+			copiar(lodash, pastaJs + Biblioteca.LODASH.toString());
+		}
+	}
+
+	private void copiar(InputStream origem, String destino) throws IOException {
+		Files.copy(origem, Paths.get(destino), StandardCopyOption.REPLACE_EXISTING);
 	}
 }

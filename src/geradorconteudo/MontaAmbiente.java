@@ -12,24 +12,41 @@ import dto.OpcoesDto;
 
 public class MontaAmbiente {
 
-	public boolean montar(OpcoesDto opcoes) throws IOException {
+	private CriaHtml criaHtml = null;
+	private CriaJS criaJS = null;
+	private CriaCss criaCss = null;
+	private OpcoesDto opcoes;
+	private GeraHtml geraHtml = null;
+	private GeraJS geraJS = null;
+	private GeraCss geraCss = null;
+	private CopiaProjetos copiaProjetos = null;
+	private CriaPasta criaPasta = null;
+	
+	public MontaAmbiente(OpcoesDto opcoes) {
+		this.criaHtml = new CriaHtml();
+		this.criaJS = new CriaJS();
+		this.criaCss = new CriaCss();
+		this.geraHtml = new GeraHtml(opcoes);
+		this.geraJS = new GeraJS(opcoes);
+		this.geraCss = new GeraCss(opcoes);
+		this.opcoes = opcoes;
+		this.copiaProjetos = new CopiaProjetos(opcoes);
+		this.criaPasta = new CriaPasta();
+	}
+	
+	public boolean montar() throws IOException {
 		if(opcoes.isProjetoProntoSelecionado()){
-			new CopiaProjetos(opcoes).copiarArquivos();
+			copiaProjetos.copiarArquivos();
 			return true;
 		}
 		
-		final String conteudoHtml = new GeraHtml(opcoes).gerar();
-		final String conteudoJS = new GeraJS(opcoes).gerar();
-		final String conteudoCss = new GeraCss(opcoes).gerar();
+		criaPasta.criarPastas(opcoes.getNomeProjeto());
 		
-		CriaPasta criadorPasta = new CriaPasta();
-		criadorPasta.criarPastas(opcoes.getNomeProjeto());
+		criaHtml.gravarEmArquivo(geraHtml.gerar(), opcoes);
+		criaJS.gravarEmArquivo(geraJS.gerar(), opcoes);
+		criaCss.gravarEmArquivo(geraCss.gerar(), opcoes);
 		
-		new CriaHtml().gravarEmArquivo(conteudoHtml, opcoes);
-		new CriaJS().gravarEmArquivo(conteudoJS, opcoes);
-		new CriaCss().gravarEmArquivo(conteudoCss, opcoes);
-		
-		new CopiaBibliotecas(opcoes).copiarArquivos();
+		new CopiaBibliotecas(opcoes).copiar();
 		
 		return true;
 	}

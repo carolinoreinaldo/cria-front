@@ -1,65 +1,30 @@
 package gui;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+public class TelaAjuda extends Mensagem {
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+	private static final long serialVersionUID = 1L;
 
-public class TelaAjuda extends JFrame{
+	@Override
+	protected String recuperarTitulo() {
+		return "----Ajuda----";
+	}
 
-	private static final long serialVersionUID = -6594890186448328381L;
-
-	public void criaTela(){
-		setTitle("----Ajuda----");
-		setSize(500, 300);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		add(criaPanelPrincipal());
-		setVisible(true);
-	}
-	
-	private JPanel criaPanelPrincipal() {
-		JPanel panel = new JPanel();
-		panel.add(criaJPanelTextoAjuda());
-		panel.add(criaPanelBotoes());
-		return panel;
-	}
-	
-	private JPanel criaJPanelTextoAjuda(){
-		JPanel panel = new JPanel();
-		
-		JTextArea texto = new JTextArea(10, 10);
-		texto.setText(criaTextoAjuda());
-		panel.add(texto);
-		return panel;
-	}
-	
-	private JPanel criaPanelBotoes(){
-		JPanel panel = new JPanel();
-		
-		JButton btnFechar = new JButton("Fechar");
-		btnFechar.addMouseListener(new MouseAdapter() {
-			@Override
-		     public void mouseClicked(MouseEvent mouseEvent) {
-				setVisible(false);
-				dispose();
-			}
-		});
-		
-		panel.add(btnFechar);
-		
-		return panel;
-	}
-	
-	private String criaTextoAjuda(){
+	@Override
+	public String recuperarMensagem() {
 		StringBuilder ajuda = new StringBuilder();
-		ajuda.append("Essa ferramenta cria um ambiente Front-End básico");
-		ajuda.append("\nno seguinte formato:");
+		ajuda.append("");
+		ajuda.append("  Essa ferramenta cria um ambiente Front-End básico");
+		ajuda.append("\n  no seguinte formato:");
 		ajuda.append("\n");
+		ajuda.append("\n  projeto");
+		ajuda.append("\n  -projeto.html");
+		ajuda.append("\n  -css/projeto.css");
+		ajuda.append("\n  -js/projeto.js");
 		ajuda.append("\n");
+		ajuda.append("\n  PROJETOS PRONTOS");
+		ajuda.append("\n  Você também pode gerar projetos prontos ");
+		ajuda.append("\n  escolhendo projetos no combo 'Projetos Prontos'");
+		ajuda.append("\n  e clicando clicando no botão 'criar'");
 		return ajuda.toString();
 	}
 }

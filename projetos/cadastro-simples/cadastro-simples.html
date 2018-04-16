@@ -7,28 +7,6 @@
   </head>
   <body>
     <div id="principal">
-      <div class="div-table">
-        <table id="tbl-cadastro">
-          <tr>
-            <td>id</td>
-            <td>nome</td>
-            <td>idade</td>
-            <td>Remover</td>
-          </tr>
-          <tr>
-            <td class="td-id">1</td>
-            <td>Pessoa 1</td>
-            <td>30</td>
-            <td><button class="btn-remover" name="btn-remover">X</button></td>
-          </tr>
-          <tr>
-            <td class="td-id">2</td>
-            <td>Pessoa 2</td>
-            <td>25</td>
-            <td><button class="btn-remover" name="btn-remover">X</button></td>
-          </tr>
-        </table>
-      </div>
       <div class="div-formulario">
         <form action="#">
           <label for="Nome:" for="input-nome"></label>
@@ -38,7 +16,59 @@
           <input type="button" value="Adicionar" id="btn-add">
         </form>
       </div>
+      <hr>
+      <input type="text" placeholder="Pesquisar Nome" class="pesquisa-nome">
+      <input type="button" value="Busca no Servidor" id="busca-pessoas">
+      <div class="div-table">
+        <table id="tbl-cadastro" border="1">
+          <tr>
+            <td>id</td>
+            <td>nome</td>
+            <td>idade</td>
+            <td>Remover</td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">1</td>
+            <td class="td-nome">Pedro</td>
+            <td>30</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">2</td>
+            <td class="td-nome">João</td>
+            <td>25</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">3</td>
+            <td class="td-nome">Maria</td>
+            <td>30</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">4</td>
+            <td class="td-nome">Lurdes</td>
+            <td>46</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">5</td>
+            <td class="td-nome">Doubglas</td>
+            <td>24</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+          <tr class="pessoa">
+            <td class="td-id">6</td>
+            <td class="td-nome">Renato</td>
+            <td>31</td>
+            <td><button class="btn-remover" name="btn-remover">X</button></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </body>
-    <script type="text/javascript" src="js/cadastro-simples.js"></script>
+    <script type="text/javascript" src="js/adicionar-pessoas.js"></script>
+    <script type="text/javascript" src="js/remover-pessoas.js"></script>
+    <script type="text/javascript" src="js/filtra-pessoas.js"></script>
+    <script type="text/javascript" src="js/pesquisa-pessoas.js"></script>
 </html>
