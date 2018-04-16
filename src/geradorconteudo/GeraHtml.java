@@ -1,7 +1,7 @@
 package geradorconteudo;
 
 import dto.OpcoesDto;
-import enums.Biblioteca;
+import enums.JavaScript;
 
 public class GeraHtml {
 
@@ -18,10 +18,10 @@ public class GeraHtml {
 		html.append("\n  <head>");
 		html.append("\n    <meta charset=\"utf-8\">");
 		if(opcoesDto.isjQuery()) {
-			html.append("\n    <script type=\"text/javascript\" src=\"js/" + Biblioteca.JQUERY + "\"></script>");
+			html.append("\n    <script type=\"text/javascript\" src=\"js/" + JavaScript.JQUERY + "\"></script>");
 		}
 		if(opcoesDto.isjQuery()) {
-			html.append("\n    <script type=\"text/javascript\" src=\"js/" + Biblioteca.LODASH + "\"></script>");
+			html.append("\n    <script type=\"text/javascript\" src=\"js/" + JavaScript.LODASH + "\"></script>");
 		}
 		html.append("\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/" + opcoesDto.getNomeProjeto() + ".css\">");
 		html.append("\n    <title>" + opcoesDto.getNomeProjeto() + "</title>");

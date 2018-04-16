@@ -6,12 +6,13 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import static enums.Extensao.ZIP;
+import static constantes.Constantes.CAMINHO_PROJETO;
 
 import dto.OpcoesDto;
 
 public class CopiaProjetos {
 
-	private static final String BAR = String.valueOf(File.separatorChar);
 	private StandardCopyOption opcaoDeCopia = StandardCopyOption.REPLACE_EXISTING;
 	
 	private String caminhoParaSalvarZip = null;
@@ -20,15 +21,14 @@ public class CopiaProjetos {
 	private UnZip unZip = null;
 	
 	public CopiaProjetos(OpcoesDto opcoes){
-		String pastaAtual = new File("").getAbsolutePath() + BAR;
-		this.caminhoParaSalvarZip = pastaAtual + opcoes.getNomeProjeto() + ".zip";
-		this.pastaParaDescompactarZip = pastaAtual + opcoes.getNomeProjeto();
+		this.caminhoParaSalvarZip = CAMINHO_PROJETO + opcoes.getNomeProjeto() + ZIP;
+		this.pastaParaDescompactarZip = CAMINHO_PROJETO + opcoes.getNomeProjeto();
 		this.opcoes = opcoes;
 		unZip = new UnZip();
 	}
 	
 	public void copiarArquivos() throws IOException {
-		InputStream is = getClass().getClassLoader().getResourceAsStream(opcoes.getNomeProjeto() +  ".zip");
+		InputStream is = getClass().getClassLoader().getResourceAsStream(opcoes.getNomeProjeto() +  ZIP);
 		Files.copy(is, Paths.get(caminhoParaSalvarZip), opcaoDeCopia);
 		unZip.unZipIt(caminhoParaSalvarZip, pastaParaDescompactarZip);
 		deletaZip();

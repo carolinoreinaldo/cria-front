@@ -6,11 +6,9 @@ import java.io.PrintWriter;
 
 import dto.OpcoesDto;
 
+
 public abstract class CriaArquivo {
 
-	protected static final String DIRETORIO_ATUAL = new File("").getAbsolutePath();
-	protected static final String BAR = String.valueOf(File.separatorChar);
-	
 	public void gravarEmArquivo(String conteudo, OpcoesDto opcoes) {
         try {
             File file = new File(recuperarUrl(opcoes.getNomeProjeto()));

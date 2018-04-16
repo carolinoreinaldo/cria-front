@@ -2,7 +2,7 @@ package geradorconteudo;
 
 import java.io.IOException;
 
-import criadoresfisicos.CopiaBibliotecas;
+import criadoresfisicos.CopiaJS;
 import criadoresfisicos.CopiaProjetos;
 import criadoresfisicos.CriaCss;
 import criadoresfisicos.CriaHtml;
@@ -46,7 +46,7 @@ public class MontaAmbiente {
 		criaJS.gravarEmArquivo(geraJS.gerar(), opcoes);
 		criaCss.gravarEmArquivo(geraCss.gerar(), opcoes);
 		
-		new CopiaBibliotecas(opcoes).copiar();
+		new CopiaJS(opcoes).copiar();
 		
 		return true;
 	}

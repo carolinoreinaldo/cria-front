@@ -1,16 +1,15 @@
 package criadoresfisicos;
 
 import java.io.File;
+import static constantes.Constantes.CAMINHO_PROJETO;
+import static constantes.Constantes.BAR;
 
 public class CriaPasta {
 
-	final private static String DIRETORIO_ATUAL = new File("").getAbsolutePath();
-	final private static String BAR = String.valueOf(File.separatorChar);
-	
 	public void criarPastas(String nomeProjeto) {
-		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto);
-		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto + BAR + "js");
-		criarPasta(DIRETORIO_ATUAL + BAR + nomeProjeto + BAR + "css");
+		criarPasta(CAMINHO_PROJETO + nomeProjeto);
+		criarPasta(CAMINHO_PROJETO + nomeProjeto + BAR + "js");
+		criarPasta(CAMINHO_PROJETO + nomeProjeto + BAR + "css");
 	}
 	
 	public void criarPasta(String caminhoPasta){
