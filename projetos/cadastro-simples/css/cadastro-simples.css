@@ -5,7 +5,7 @@
 }
 
 #principal{
-	width: 500px;
+	width: 600px;
 	height: 500px;
 	margin: auto;
 	text-align: center;
@@ -22,4 +22,51 @@
 
 .invisivel {
 	display: none;
+}
+
+.div-table {
+	text-align: inherit;
+}
+
+table {
+	border-collapse: collapse;
+	margin-top: 20px;
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid gray;
+	height: 30px;
+}
+
+.pesquisa-nome {
+	margin-top: 20px;
+	width: 200px;
+	height: 30px;
+}
+
+#busca-pessoas {
+	margin-top: 20px;
+}
+
+hr {
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+.div-formulario {
+	margin-top: 20px;
+}
+
+.input-info {
+	width: 200px;
+	height: 30px;
+}
+
+input {
+	padding: 3px;
+}
+
+input[type=button] {
+	height: 40px;
 }

@@ -10,17 +10,16 @@
       <div class="div-formulario">
         <form action="#">
           <label for="Nome:" for="input-nome"></label>
-          <input type="text" id="input-nome" class="input-info" name="input-nome">
+          <input type="text" id="input-nome" class="input-info" name="input-nome" placeholder="Nome">
           <label for="Nome:" for="input-idade"></label>
-          <input type="text" id="input-idade" class="input-info" name="input-idade">
+          <input type="text" id="input-idade" class="input-info" name="input-idade" placeholder="Idade">
           <input type="button" value="Adicionar" id="btn-add">
         </form>
       </div>
       <hr>
       <input type="text" placeholder="Pesquisar Nome" class="pesquisa-nome">
-      <input type="button" value="Busca no Servidor" id="busca-pessoas">
       <div class="div-table">
-        <table id="tbl-cadastro" border="1">
+        <table id="tbl-cadastro">
           <tr>
             <td>id</td>
             <td>nome</td>
@@ -65,6 +64,7 @@
           </tr>
         </table>
       </div>
+      <input type="button" value="Busca no Servidor" id="busca-pessoas">
     </div>
   </body>
     <script type="text/javascript" src="js/adicionar-pessoas.js"></script>
