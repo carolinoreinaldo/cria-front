@@ -1,20 +1,16 @@
 package criadoresfisicos;
 
-import static constantes.Constantes.CAMINHO_DESTINO_JQUERY;
-import static constantes.Constantes.CAMINHO_DESTINO_LODASH;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import Utils.UrlUtils;
 import dto.OpcoesDto;
 import enums.JavaScript;
 
 public class CopiaJS {
-
-	
 	
 	private OpcoesDto opcoes = null;
 	
@@ -25,12 +21,12 @@ public class CopiaJS {
 	public void copiar() throws IOException {
 		if(opcoes.isjQuery()) {
 			InputStream jquery = getClass().getClassLoader().getResourceAsStream(JavaScript.JQUERY.toString());
-			copiar(jquery, CAMINHO_DESTINO_JQUERY);
+			copiar(jquery, UrlUtils.urlJs(opcoes, JavaScript.JQUERY.toString()));
 		}
 		
 		if(opcoes.isLodash()) {
 			InputStream lodash = getClass().getClassLoader().getResourceAsStream(JavaScript.LODASH.toString());
-			copiar(lodash, CAMINHO_DESTINO_LODASH);
+			copiar(lodash, UrlUtils.urlJs(opcoes, JavaScript.LODASH.toString()));
 		}
 	}
 

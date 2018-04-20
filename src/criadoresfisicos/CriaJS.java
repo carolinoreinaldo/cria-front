@@ -1,13 +1,17 @@
 package criadoresfisicos;
 
-import enums.Extensao;
-import static constantes.Constantes.CAMINHO_PROJETO;
-import static constantes.Constantes.BAR;
+import Utils.UrlUtils;
+import dto.ArquivoDto;
+import dto.OpcoesDto;
 
 public class CriaJS extends CriaArquivo {
 
+	public CriaJS(ArquivoDto arquivo, OpcoesDto opcoes) {
+		super(arquivo, opcoes);
+	}
+
 	@Override
-	public String recuperarUrl(String nomeArquivo) {
-		return CAMINHO_PROJETO + nomeArquivo + BAR + "js" + BAR + nomeArquivo + Extensao.JS;
+	public String recuperarUrl() {
+		return UrlUtils.urlJs(opcoes, arquivo.getNomeArquivo());
 	}
 }

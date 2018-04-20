@@ -1,14 +1,19 @@
 package geradorconteudo;
 
+import dto.ArquivoDto;
 import dto.OpcoesDto;
 import enums.JavaScript;
 
 public class GeraHtml {
 
 	private OpcoesDto opcoesDto;
+	private ArquivoDto[] arquivosCss;
+	private ArquivoDto[] arquivosJs;
 	
-	public GeraHtml(OpcoesDto opcoesDto){
+	public GeraHtml(OpcoesDto opcoesDto, ArquivoDto[] arquivosCss, ArquivoDto[] arquivosJs){
 		this.opcoesDto = opcoesDto;
+		this.arquivosCss = arquivosCss;
+		this.arquivosJs = arquivosJs;
 	}
 	
 	public String gerar() {
@@ -20,16 +25,20 @@ public class GeraHtml {
 		if(opcoesDto.isjQuery()) {
 			html.append("\n    <script type=\"text/javascript\" src=\"js/" + JavaScript.JQUERY + "\"></script>");
 		}
-		if(opcoesDto.isjQuery()) {
+		if(opcoesDto.isLodash()) {
 			html.append("\n    <script type=\"text/javascript\" src=\"js/" + JavaScript.LODASH + "\"></script>");
 		}
-		html.append("\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/" + opcoesDto.getNomeProjeto() + ".css\">");
+		for (ArquivoDto css : arquivosCss) {
+			html.append("\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/" + css.getNomeArquivo() + ".css\">");
+		}
 		html.append("\n    <title>" + opcoesDto.getNomeProjeto() + "</title>");
 		html.append("\n  </head>");
 		html.append("\n  <body>");
 		html.append("\n    <div id=\"principal\">primeira div</div>");
 		html.append("\n  </body>");
-		html.append("\n    <script type=\"text/javascript\" src=\"js/" + opcoesDto.getNomeProjeto() + ".js\"></script>");
+		for (ArquivoDto js : arquivosJs) {
+			html.append("\n    <script type=\"text/javascript\" src=\"js/" + js.getNomeArquivo() + ".js\"></script>");
+		}
 		html.append("\n</html>");
 		return html.toString();
 	}
