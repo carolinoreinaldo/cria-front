@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import criadoresfisicos.CopiaProjetos;
+import copiadores.CopiaProjetos;
 import dto.OpcoesDto;
 
 public class CopiaProjetosTeste {

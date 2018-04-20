@@ -2,8 +2,8 @@ package geradorconteudo;
 
 import java.io.IOException;
 
-import criadoresfisicos.CopiaJS;
-import criadoresfisicos.CopiaProjetos;
+import copiadores.CopiaJS;
+import copiadores.CopiaProjetos;
 import criadoresfisicos.CriaCss;
 import criadoresfisicos.CriaHtml;
 import criadoresfisicos.CriaJS;
