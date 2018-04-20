@@ -9,16 +9,10 @@ import java.util.zip.ZipInputStream;
 public class UnZip {
     private StringBuilder extractedFiles = new StringBuilder();
 		
-    public void unZipIt(String zipFile, String outputFolder) throws IOException{
+    public void unZipIt(String zipFile) throws IOException{
 
      byte[] buffer = new byte[1024];
     	
-	//create output directory is not exists
-	File folder = new File(outputFolder);
-	if(!folder.exists()){
-		folder.mkdir();
-	}
-		
 	//get the zip file content
 	ZipInputStream zis = 
 		new ZipInputStream(new FileInputStream(zipFile));

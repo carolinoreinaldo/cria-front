@@ -14,7 +14,7 @@ public enum Projetos {
 	}
 	
 	public String nomeParaExibicao(){
-		return this.nomeProjeto + this.linguagem; 
+		return this.nomeProjeto + " " + this.linguagem; 
 	}
 	public String linguagem() {
 		return this.linguagem;

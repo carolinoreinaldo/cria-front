@@ -19,21 +19,19 @@ public class CopiaProjetos {
 	private StandardCopyOption opcaoDeCopia = StandardCopyOption.REPLACE_EXISTING;
 	
 	private String caminhoParaSalvarZip = null;
-	private String pastaParaDescompactarZip = null;
 	private UnZip unZip = null;
 	private String nomeArquivoZip = null;
 	
 	public CopiaProjetos(OpcoesDto opcoes){
 		this.nomeArquivoZip = recuperarNomeProjetoPeloNomedeExibicao(opcoes.getNomeProjeto()) + ZIP;
 		this.caminhoParaSalvarZip = UrlUtils.CAMINHO_PROJETO + nomeArquivoZip;
-		this.pastaParaDescompactarZip = UrlUtils.CAMINHO_PROJETO + opcoes.getNomeProjeto();
 		unZip = new UnZip();
 	}
 	
 	public void copiarArquivos() throws IOException {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(nomeArquivoZip);
 		Files.copy(is, Paths.get(caminhoParaSalvarZip), opcaoDeCopia);
-		unZip.unZipIt(caminhoParaSalvarZip, pastaParaDescompactarZip);
+		unZip.unZipIt(caminhoParaSalvarZip);
 		deletaZip();
 	}
 	
