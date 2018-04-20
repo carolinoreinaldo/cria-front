@@ -11,6 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 import Utils.UrlUtils;
 import dto.OpcoesDto;
+import enums.Projetos;
 import zip.UnZip;
 
 public class CopiaProjetos {
@@ -19,18 +20,18 @@ public class CopiaProjetos {
 	
 	private String caminhoParaSalvarZip = null;
 	private String pastaParaDescompactarZip = null;
-	private OpcoesDto opcoes = null;
 	private UnZip unZip = null;
+	private String nomeArquivoZip = null;
 	
 	public CopiaProjetos(OpcoesDto opcoes){
-		this.caminhoParaSalvarZip = UrlUtils.CAMINHO_PROJETO + opcoes.getNomeProjeto() + ZIP;
+		this.nomeArquivoZip = recuperarNomeProjetoPeloNomedeExibicao(opcoes.getNomeProjeto()) + ZIP;
+		this.caminhoParaSalvarZip = UrlUtils.CAMINHO_PROJETO + nomeArquivoZip;
 		this.pastaParaDescompactarZip = UrlUtils.CAMINHO_PROJETO + opcoes.getNomeProjeto();
-		this.opcoes = opcoes;
 		unZip = new UnZip();
 	}
 	
 	public void copiarArquivos() throws IOException {
-		InputStream is = getClass().getClassLoader().getResourceAsStream(opcoes.getNomeProjeto() +  ZIP);
+		InputStream is = getClass().getClassLoader().getResourceAsStream(nomeArquivoZip);
 		Files.copy(is, Paths.get(caminhoParaSalvarZip), opcaoDeCopia);
 		unZip.unZipIt(caminhoParaSalvarZip, pastaParaDescompactarZip);
 		deletaZip();
@@ -39,5 +40,9 @@ public class CopiaProjetos {
 	private void deletaZip(){
 		File zip = new File(caminhoParaSalvarZip);
 		zip.delete();
+	}
+	
+	private String recuperarNomeProjetoPeloNomedeExibicao(String nomeExibicao){
+		return Projetos.recuperarPeloNomeDeExibicao(nomeExibicao);
 	}
 }

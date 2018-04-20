@@ -9,6 +9,7 @@ public class UrlUtils {
 
 	public static final String BAR = String.valueOf(File.separatorChar);
 	public static final String CAMINHO_PROJETO = new File("").getAbsolutePath() + BAR;
+	public static final String CAMINHO_PROJETOS_PRONTOS = new File("").getAbsolutePath() + BAR + "projetos" + BAR;
 	
 	public static String urlJs(OpcoesDto opcoes, String nomeArquivo) {
 		return CAMINHO_PROJETO + opcoes.getNomeProjeto() + BAR + "js" + BAR + nomeArquivo + Extensao.JS;

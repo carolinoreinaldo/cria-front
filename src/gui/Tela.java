@@ -107,7 +107,7 @@ public class Tela extends JFrame{
 		Projetos[] projetos = Projetos.values();
 		JComboBox<String> comboBox = new JComboBox<>();
 		for (Projetos prjojeto : projetos) {
-			comboBox.addItem(prjojeto.toString());
+			comboBox.addItem(prjojeto.nomeParaExibicao());
 		}
 		comboBox.addActionListener(new ActionListener() {
 			

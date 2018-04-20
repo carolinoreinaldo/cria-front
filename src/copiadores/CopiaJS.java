@@ -18,7 +18,7 @@ public class CopiaJS {
 		this.opcoes = opcoes;
 	}
 	
-	public void copiar() throws IOException {
+	public void copiarBibliotecas() throws IOException {
 		if(opcoes.isjQuery()) {
 			InputStream jquery = getClass().getClassLoader().getResourceAsStream(JavaScript.JQUERY.toString());
 			copiar(jquery, UrlUtils.urlJs(opcoes, JavaScript.JQUERY.toString()));
