@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,14 +29,17 @@ public class Tela extends JFrame{
 	
 	private static final int PANEL_NOME_PROJETO = 0;
 	private static final int PANEL_BIBLIOTECAS = 1;
+	private static final int PANEL_BOTOES = 2;
 	private static final int PANEL_MESSAGE = 4;
-	private static final int PANEL_PROJETOS = 3;
+	private static Dimension panelDimensaoPadrao = null;
 	
-	private boolean projetoSelecionado = false;
+	public Tela() {
+		panelDimensaoPadrao = new Dimension(400, 80);
+	}
 	
 	public void criaTela(){
 		setTitle("Construção do Ambiente Front-End");
-		setSize(400, 300);
+		setSize(550, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(criaPanelPrincipal());
@@ -52,11 +56,17 @@ public class Tela extends JFrame{
 		panel.add(criaJPanelMessage());
 		return panel;
 	}
+
+	private JPanel criarPanelDefault(String nomePanel, String nomeLegenda) {
+		JPanel panel = new JPanel(new GridBagLayout());
+		panel.setPreferredSize(panelDimensaoPadrao);
+		panel.setBorder(BorderFactory.createTitledBorder(nomeLegenda));
+		panel.setName(nomePanel);
+		return panel;
+	}
 	
 	private JPanel criaJPanelNomeProjeto(){
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Nome do Projeto"));
-		panel.setName("PanelNomeProjeto");
+		JPanel panel = criarPanelDefault("PanelNomeProjeto", "Nome do Projeto");
 		JLabel label = new JLabel();
 		label.setText("Nome Projeto: ");
 		JTextField text = new JTextField();
@@ -66,14 +76,9 @@ public class Tela extends JFrame{
 		
 		return panel;
 	}
-	
+
 	private JPanel criaJPanelBibliotecas(){
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Bibliotecas"));
-		panel.setName("PanelBibliotecas");
-		
-		panel.setToolTipText("Bibliotecas");
-		
+		JPanel panel = criarPanelDefault("PanelBibliotecas", "Adicionar Bibliotecas?");
 		JCheckBox jQuery = new JCheckBox("jQuery: ");
 		jQuery.setName("jQuery");
 		JCheckBox lodash = new JCheckBox("lodash: ");
@@ -89,53 +94,25 @@ public class Tela extends JFrame{
 		return panel;
 	}
 	
-	private JPanel criaJPanelMessage(){
-		JPanel panel = new JPanel();
-		panel.setName("PanelMessage");
-		
-		JLabel labelMessage = new JLabel();
-		
-		panel.add(labelMessage);
-		return panel;
-	}
 	
-	private JPanel criaJPanelProjetos(){
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Projetos Prontos"));
-		panel.setName("PanelProjetos");
-		
-		Projetos[] projetos = Projetos.values();
-		JComboBox<String> comboBox = new JComboBox<>();
-		for (Projetos prjojeto : projetos) {
-			comboBox.addItem(prjojeto.nomeParaExibicao());
-		}
-		comboBox.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String projetoSelecionado = comboBox.getSelectedItem().toString();
-				if(!Projetos.NENHUM_PROJETO.toString().equals(projetoSelecionado)){
-					Tela.this.projetoSelecionado = true;
-					Tela.this.bloquearPanels(true);
-				} else {
-					Tela.this.projetoSelecionado = false;
-					Tela.this.bloquearPanels(false);
-				}
-			}
-		});
-		panel.add(comboBox);
-		return panel;
-	}
 	
 	protected void bloquearPanels(boolean bloquear) {
 		JPanel pNomeProjeto = recuperarPanel(PANEL_NOME_PROJETO);
+		pNomeProjeto.setEnabled(!bloquear);
+		JLabel lblNomeProjeto = (JLabel) pNomeProjeto.getComponent(0);
+		lblNomeProjeto.setEnabled(!bloquear);
 		JTextField nomeProjeto = (JTextField) pNomeProjeto.getComponent(1);
 		nomeProjeto.setEditable(!bloquear);
 		
 		JPanel pBibliotecas = recuperarPanel(PANEL_BIBLIOTECAS);
+		pBibliotecas.setEnabled(!bloquear);
 		JCheckBox checkJQuery = (JCheckBox) pBibliotecas.getComponent(0);
 		JCheckBox checkLodash = (JCheckBox) pBibliotecas.getComponent(1);
 		JCheckBox checkBootStrap = (JCheckBox) pBibliotecas.getComponent(2);
+		
+		JPanel pBotoes = recuperarPanel(PANEL_BOTOES);
+		JButton btnCriar = (JButton) pBotoes.getComponent(0);
+		btnCriar.setEnabled(!bloquear);
 		
 		checkJQuery.setEnabled(!bloquear);
 		checkLodash.setEnabled(!bloquear);
@@ -143,9 +120,7 @@ public class Tela extends JFrame{
 	}
 
 	private JPanel criaPanelBotoes(){
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Botões"));
-		panel.setName("PanelBotoes");
+		JPanel panel = criarPanelDefault("PanelBotoes", "Ações");
 		
 		JButton btnCriar = new JButton("Criar");
 		btnCriar.addMouseListener(new MouseAdapter() {
@@ -153,31 +128,25 @@ public class Tela extends JFrame{
 		     public void mouseClicked(MouseEvent mouseEvent) {
 	           JPanel panelNomeProjeto = recuperarPanel(PANEL_NOME_PROJETO);
 	           JPanel panelBibliotecas = recuperarPanel(PANEL_BIBLIOTECAS);
-	           JPanel panelProjetos = recuperarPanel(PANEL_PROJETOS);
+	           
 	           
 	           JLabel message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
 	           OpcoesDto opcoes = new OpcoesDto();
 	           try {
-		           if(projetoSelecionado){
-		        	   opcoes.setNomeProjeto(recuperarProjetoSelecionado(panelProjetos));
-		        	   opcoes.setProjetoProntoSelecionado(true);
-		        	   new MontaAmbiente(opcoes).montar();
-		           } else {
-			           opcoes.setjQuery(checkBoxSelecionado(panelBibliotecas.getComponent(0)));
-			           opcoes.setLodash(checkBoxSelecionado(panelBibliotecas.getComponent(1)));
-			           opcoes.setBootstrap(checkBoxSelecionado(panelBibliotecas.getComponent(2)));
-			           opcoes.setNomeProjeto(recuperarInputTexto(panelNomeProjeto.getComponent(1)));
-		           
-		        	   boolean ambienteMontado = new MontaAmbiente(opcoes).montar();
-		        	   if(ambienteMontado) {
-		        		   message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
-		        		   message.setText("Ambiente montado com sucesso.");
-		        		   message.setForeground(Color.GREEN);
-		        	   } else {
-		        		   message.setText("Ocorreu um problema ao montar o ambiente.");
-		        		   message.setForeground(Color.RED);
-		        	   }
-		           }
+		           opcoes.setjQuery(checkBoxSelecionado(panelBibliotecas.getComponent(0)));
+		           opcoes.setLodash(checkBoxSelecionado(panelBibliotecas.getComponent(1)));
+		           opcoes.setBootstrap(checkBoxSelecionado(panelBibliotecas.getComponent(2)));
+		           opcoes.setNomeProjeto(recuperarInputTexto(panelNomeProjeto.getComponent(1)));
+	           
+	        	   boolean ambienteMontado = new MontaAmbiente(opcoes).montar();
+	        	   if(ambienteMontado) {
+	        		   message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
+	        		   message.setText("Ambiente montado com sucesso.");
+	        		   message.setForeground(Color.BLUE);
+	        	   } else {
+	        		   message.setText("Ocorreu um problema ao montar o ambiente.");
+	        		   message.setForeground(Color.RED);
+	        	   }
 			   } catch (Exception e) {
 				   new TelaErro(e).criaTela();
 			   }
@@ -207,6 +176,61 @@ public class Tela extends JFrame{
 		panel.add(btnCancelar);
 		panel.add(btnInfo);
 		
+		return panel;
+	}
+
+	private JPanel criaJPanelProjetos(){
+		JPanel panel = criarPanelDefault("PanelProjetos", "Projetos Prontos");
+		JButton btnGerarProjeto = new JButton("Gerar Projeto Pronto");
+		
+		Projetos[] projetos = Projetos.values();
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.setPreferredSize(new Dimension(500, 30));
+		
+		for (Projetos prjojeto : projetos) {
+			comboBox.addItem(prjojeto.nomeParaExibicao());
+		}
+		comboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String projetoSelecionado = comboBox.getSelectedItem().toString();
+				if(Projetos.NENHUM_PROJETO.toString().equals(projetoSelecionado.trim())){
+					Tela.this.bloquearPanels(false);
+					btnGerarProjeto.setEnabled(false);
+				} else {
+					Tela.this.bloquearPanels(true);
+					btnGerarProjeto.setEnabled(true);
+				}
+			}
+		});
+		panel.add(comboBox);
+		
+		btnGerarProjeto.addMouseListener(new MouseAdapter() {
+			@Override
+		     public void mouseClicked(MouseEvent mouseEvent) {
+				OpcoesDto opcoes = new OpcoesDto();
+				opcoes.setNomeProjeto(recuperarProjetoSelecionado(panel));
+		       	opcoes.setProjetoProntoSelecionado(true);
+		       	try {
+					new MontaAmbiente(opcoes).montar();
+		            JLabel message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
+					message = (JLabel)recuperarPanel(PANEL_MESSAGE).getComponent(0);
+            		message.setText("Projeto pronto criado com sucesso.");
+	        		message.setForeground(Color.BLUE);
+				} catch (Exception e) {
+					new TelaErro(e).criaTela();
+				}
+			}
+		});
+		panel.add(btnGerarProjeto);
+		return panel;
+	}
+	private JPanel criaJPanelMessage(){
+		JPanel panel = criarPanelDefault("PanelMensagem", "Status do Processo");
+		
+		JLabel labelMessage = new JLabel();
+		
+		panel.add(labelMessage);
 		return panel;
 	}
 	

@@ -3,7 +3,8 @@ package enums;
 public enum Projetos {
 
 	NENHUM_PROJETO("Nehum Projeto", ""),
-	CADASTRO_SIMPLES("cadastro-simples","[Html+js+css]");
+	CADASTRO_SIMPLES("cadastro-simples","[Html+js+css]"),
+	REACT_APP("react-app","[Projeto-React]");
 	
 	private String nomeProjeto;
 	private String linguagem;

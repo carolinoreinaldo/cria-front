@@ -1,11 +1,13 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public abstract class Mensagem extends JFrame {
@@ -14,7 +16,7 @@ public abstract class Mensagem extends JFrame {
 
 		public void criaTela(){
 			setTitle(recuperarTitulo());
-			setSize(800, 500);
+			setSize(new Dimension(500, 500));
 			setLocationRelativeTo(null);
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			add(criaPanelPrincipal());
@@ -36,7 +38,12 @@ public abstract class Mensagem extends JFrame {
 			JTextArea texto = new JTextArea(10, 10);
 			texto.setText(recuperarMensagem());
 			texto.setAutoscrolls(true);
+			
+			JScrollPane scroll = new JScrollPane (texto, 
+					   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			add(scroll);
 			panel.add(texto);
+			
 			return panel;
 		}
 		
